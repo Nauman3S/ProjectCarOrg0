@@ -1,0 +1,71 @@
+﻿Ard_Sketch snd0000000000000011111111
+int led=9;
+int data[3]={0,0,0};
+int va=0;
+int bits=0;
+#include <SPI.h>
+#include <nRF24L01.h>
+#include <RF24.h>
+
+RF24 radio(9, 10);
+
+const byte rxAddr[6] = "00001";
+
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(9600);
+  
+   radio.begin();
+  radio.setRetries(15, 15);
+  radio.openWritingPipe(rxAddr);
+  
+  radio.stopListening();
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  if (Serial.available()){
+    for (int i=0;i<4;i++){
+      data[i]=-9;
+    }
+    int i=0;
+    delay(100);
+    while(Serial.available()>0){
+      data[i]=Serial.read()-'0';
+      i++;  
+    }
+    bits=0;
+    for(int i=0;i<4;i++){
+      if(data[i]==-9){
+        bits++;
+      }}
+  if(bits==2){
+    va=data[0];
+   Serial.println(va);
+   Serial.println(bits);
+  }
+  else if(bits==1){
+    va=(10*data[0])+data[1];
+    Serial.println(va);
+    Serial.println(bits);
+  }
+  else if(bits==0){
+    va=(100*data[0]) + (10*data[1]) + data[2];
+    Serial.println(va);
+    Serial.println(bits);
+  }
+   printf("va=%d",va);
+   if (va>=0 &&va<=255){
+    
+  char text[] = "Hello World";
+  //text=text+'0';
+  sprintf(text,"%d",va);
+  radio.write(&text, sizeof(text));
+  
+  delay(20);
+   }
+    Serial.println(va);
+    va=0;
+  }
+  delay(22);
+}

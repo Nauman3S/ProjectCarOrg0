@@ -1,0 +1,115 @@
+﻿Ard_Sketch _44444444
+
+#include <SPI.h>
+#include <nRF24L01.h>
+#include <RF24.h>
+#include <stdlib.h>
+RF24 radio(9, 10);
+
+const byte rxAddr[6] = "00001";
+////motors
+//motor1
+int enA = 3;
+int in1 = 31;
+int in2 = 32;
+// motor two
+int enB = 4;
+int in3 = 33;
+int in4 = 34;
+
+//motor3
+int enA2 = 5;
+int in12 = 35;
+int in22 = 36;
+// motor 4
+int enB2 = 6;
+int in32 = 37;
+int in42 = 38;
+//motors
+void setup()
+{
+  while (!Serial);
+  Serial.begin(9600);
+  
+  radio.begin();
+  radio.openReadingPipe(0, rxAddr);
+  
+  radio.startListening();
+  ///motors
+   // set all the motor control pins to outputs
+  pinMode(enA, OUTPUT);
+  pinMode(enB, OUTPUT);
+  pinMode(in1, OUTPUT);
+  pinMode(in2, OUTPUT);
+  pinMode(in3, OUTPUT);
+  pinMode(in4, OUTPUT);
+///set2
+  pinMode(enA2, OUTPUT);
+  pinMode(enB2, OUTPUT);
+  pinMode(in12, OUTPUT);
+  pinMode(in22, OUTPUT);
+  pinMode(in32, OUTPUT);
+  pinMode(in42, OUTPUT);
+  ///
+}
+
+void loop()
+{
+  if (radio.available())
+  {
+    char text[32] = {0};
+    radio.read(&text, sizeof(text));
+    if (atoi(text)==1){
+      up();
+    }
+    if(atoi(text)==2){
+      down();
+    }
+    Serial.println(text);
+  }
+}
+
+void up(){
+ digitalWrite(in1, HIGH);
+ digitalWrite(in2, LOW);
+  digitalWrite(in3, HIGH);
+  digitalWrite(in4, LOW);
+ analogWrite(enA, 200);
+ analogWrite(enB, 200);
+///set2
+
+ digitalWrite(in12, HIGH);
+ digitalWrite(in22, LOW);
+  digitalWrite(in32, HIGH);
+  digitalWrite(in42, LOW);
+ analogWrite(enA2, 200);
+ analogWrite(enB2, 200);
+ 
+ 
+}
+void down(){
+digitalWrite(in2, HIGH);
+ digitalWrite(in1, LOW);
+  digitalWrite(in4, HIGH);
+  digitalWrite(in3, LOW);
+ analogWrite(enA, 200);
+ analogWrite(enB, 200);
+ //set2
+digitalWrite(in22, HIGH);
+ digitalWrite(in12, LOW);
+  digitalWrite(in42, HIGH);
+  digitalWrite(in32, LOW);
+ analogWrite(enA2, 200);
+ analogWrite(enB2, 200);
+ 
+}
+void left(){
+
+}
+void right(){
+
+}
+void stopcar(){
+
+}
+
