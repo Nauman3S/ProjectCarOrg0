@@ -80,6 +80,12 @@
       <DependentUpon>Form1.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Mapper.Designer.vb">
+      <DependentUpon>Mapper.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Mapper.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -95,10 +101,14 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="SerialCommunicator.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mapper.resx">
+      <DependentUpon>Mapper.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -121,6 +131,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MegaRec.txt" />
+    <None Include="Resources\Down.png" />
+    <None Include="Resources\DownG.png" />
+    <None Include="Resources\Left.png" />
+    <None Include="Resources\LeftG.png" />
+    <None Include="Resources\Right.png" />
+    <None Include="Resources\RightG.png" />
+    <None Include="Resources\Up.png" />
+    <None Include="Resources\UpG.png" />
+    <None Include="Resources\marker.png" />
     <Content Include="UNOSender.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

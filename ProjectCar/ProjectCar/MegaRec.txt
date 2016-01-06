@@ -1,4 +1,4 @@
-﻿Ard_Sketch _44444444
+﻿//Ard_Sketch _44444444
 
 #include <SPI.h>
 #include <nRF24L01.h>
@@ -14,13 +14,13 @@ int in1 = 31;
 int in2 = 32;
 // motor two
 int enB = 4;
-int in3 = 33;
-int in4 = 34;
+int in3 = 34;
+int in4 = 33;
 
 //motor3
 int enA2 = 5;
-int in12 = 35;
-int in22 = 36;
+int in12 = 36;
+int in22 = 35;
 // motor 4
 int enB2 = 6;
 int in32 = 37;
@@ -65,6 +65,15 @@ void loop()
     if(atoi(text)==2){
       down();
     }
+     if(atoi(text)==0){
+      stopcar();
+    }
+    if(atoi(text)==3){
+      right();
+    }
+    if(atoi(text)==4){
+      left();
+    }
     Serial.println(text);
   }
 }
@@ -103,13 +112,48 @@ digitalWrite(in22, HIGH);
  analogWrite(enB2, 200);
  
 }
-void left(){
+void right(){
+ digitalWrite(in1, HIGH);
+ digitalWrite(in2, LOW);
+  digitalWrite(in3, HIGH);
+  digitalWrite(in4, LOW);
+ analogWrite(enA, 200);
+ analogWrite(enB, 200);
+///set2
+
+ digitalWrite(in12, HIGH);
+ digitalWrite(in22, LOW);
+  digitalWrite(in32, LOW);
+  digitalWrite(in42, HIGH);
+ analogWrite(enA2, 200);
+ analogWrite(enB2, 200);
 
 }
-void right(){
+void left(){
+digitalWrite(in1, HIGH);
+ digitalWrite(in2, LOW);
+  digitalWrite(in3, HIGH);
+  digitalWrite(in4, LOW);
+ analogWrite(enA, 200);
+ analogWrite(enB, 200);
+///set2
 
+ digitalWrite(in12, LOW);
+ digitalWrite(in22, HIGH);
+  digitalWrite(in32, HIGH);
+  digitalWrite(in42, LOW);
+ analogWrite(enA2, 200);
+ analogWrite(enB2, 200);
 }
 void stopcar(){
-
+digitalWrite(in22, LOW);
+ digitalWrite(in12, LOW);
+  digitalWrite(in42, LOW);
+  digitalWrite(in32, LOW);
+  digitalWrite(in2, LOW);
+ digitalWrite(in1, LOW);
+  digitalWrite(in4, LOW);
+  digitalWrite(in3, LOW);
+ 
 }
 
