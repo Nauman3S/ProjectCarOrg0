@@ -26,7 +26,6 @@ Partial Class Form1
         Me.SerialPort1 = New System.IO.Ports.SerialPort(Me.components)
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.Button7 = New System.Windows.Forms.Button()
         Me.Button6 = New System.Windows.Forms.Button()
         Me.Button5 = New System.Windows.Forms.Button()
         Me.leftp = New System.Windows.Forms.PictureBox()
@@ -54,6 +53,17 @@ Partial Class Form1
         Me.Button9 = New System.Windows.Forms.Button()
         Me.Button10 = New System.Windows.Forms.Button()
         Me.Button11 = New System.Windows.Forms.Button()
+        Me.ListBox1 = New System.Windows.Forms.ListBox()
+        Me.counterRecorder = New System.Windows.Forms.Timer(Me.components)
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Button12 = New System.Windows.Forms.Button()
+        Me.Button7 = New System.Windows.Forms.Button()
+        Me.counterPlayer = New System.Windows.Forms.Timer(Me.components)
+        Me.Button13 = New System.Windows.Forms.Button()
+        Me.Button14 = New System.Windows.Forms.Button()
+        Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
+        Me.Timer3 = New System.Windows.Forms.Timer(Me.components)
+        Me.Button15 = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         CType(Me.leftp, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.rightp, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -66,15 +76,14 @@ Partial Class Form1
         '
         'StatusStrip1
         '
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 594)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 711)
         Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(974, 22)
+        Me.StatusStrip1.Size = New System.Drawing.Size(1260, 22)
         Me.StatusStrip1.TabIndex = 8
         Me.StatusStrip1.Text = "StatusStrip1"
         '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.Button7)
         Me.GroupBox1.Controls.Add(Me.Button6)
         Me.GroupBox1.Controls.Add(Me.Button5)
         Me.GroupBox1.Controls.Add(Me.leftp)
@@ -91,25 +100,15 @@ Partial Class Form1
         Me.GroupBox1.Controls.Add(Me.up)
         Me.GroupBox1.Location = New System.Drawing.Point(12, 12)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(624, 326)
+        Me.GroupBox1.Size = New System.Drawing.Size(510, 326)
         Me.GroupBox1.TabIndex = 9
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Movement"
         '
-        'Button7
-        '
-        Me.Button7.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button7.Location = New System.Drawing.Point(347, 266)
-        Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(75, 23)
-        Me.Button7.TabIndex = 19
-        Me.Button7.Text = "Stop"
-        Me.Button7.UseVisualStyleBackColor = True
-        '
         'Button6
         '
         Me.Button6.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button6.Location = New System.Drawing.Point(533, 222)
+        Me.Button6.Location = New System.Drawing.Point(419, 222)
         Me.Button6.Name = "Button6"
         Me.Button6.Size = New System.Drawing.Size(75, 23)
         Me.Button6.TabIndex = 18
@@ -120,7 +119,7 @@ Partial Class Form1
         '
         Me.Button5.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Button5.Enabled = False
-        Me.Button5.Location = New System.Drawing.Point(441, 284)
+        Me.Button5.Location = New System.Drawing.Point(327, 284)
         Me.Button5.Name = "Button5"
         Me.Button5.Size = New System.Drawing.Size(75, 23)
         Me.Button5.TabIndex = 17
@@ -171,7 +170,7 @@ Partial Class Form1
         '
         Me.TextBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TextBox1.Enabled = False
-        Me.TextBox1.Location = New System.Drawing.Point(508, 258)
+        Me.TextBox1.Location = New System.Drawing.Point(394, 258)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(100, 20)
         Me.TextBox1.TabIndex = 11
@@ -180,7 +179,7 @@ Partial Class Form1
         '
         Me.Button2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Button2.Enabled = False
-        Me.Button2.Location = New System.Drawing.Point(533, 284)
+        Me.Button2.Location = New System.Drawing.Point(419, 284)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(75, 23)
         Me.Button2.TabIndex = 10
@@ -253,7 +252,7 @@ Partial Class Form1
         'Button4
         '
         Me.Button4.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button4.Location = New System.Drawing.Point(265, 344)
+        Me.Button4.Location = New System.Drawing.Point(377, 351)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(75, 23)
         Me.Button4.TabIndex = 19
@@ -277,18 +276,18 @@ Partial Class Form1
         Me.Panel1.Controls.Add(Me.PictureBox2)
         Me.Panel1.Controls.Add(Me.PictureBox1)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel1.Location = New System.Drawing.Point(642, 0)
+        Me.Panel1.Location = New System.Drawing.Point(528, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(332, 594)
+        Me.Panel1.Size = New System.Drawing.Size(732, 711)
         Me.Panel1.TabIndex = 20
         '
         'PictureBox2
         '
-        Me.PictureBox2.Image = Global.ProjectCar.My.Resources.Resources.marker
-        Me.PictureBox2.Location = New System.Drawing.Point(150, 272)
+        Me.PictureBox2.Image = Global.ProjectCar.My.Resources.Resources.YellowCar
+        Me.PictureBox2.Location = New System.Drawing.Point(87, 131)
         Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(36, 47)
-        Me.PictureBox2.TabIndex = 23
+        Me.PictureBox2.Size = New System.Drawing.Size(49, 29)
+        Me.PictureBox2.TabIndex = 39
         Me.PictureBox2.TabStop = False
         '
         'PictureBox1
@@ -296,14 +295,14 @@ Partial Class Form1
         Me.PictureBox1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PictureBox1.Location = New System.Drawing.Point(0, 0)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(332, 594)
-        Me.PictureBox1.TabIndex = 22
+        Me.PictureBox1.Size = New System.Drawing.Size(732, 711)
+        Me.PictureBox1.TabIndex = 0
         Me.PictureBox1.TabStop = False
         '
         'Button8
         '
         Me.Button8.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button8.Location = New System.Drawing.Point(82, 392)
+        Me.Button8.Location = New System.Drawing.Point(368, 509)
         Me.Button8.Name = "Button8"
         Me.Button8.Size = New System.Drawing.Size(75, 23)
         Me.Button8.TabIndex = 22
@@ -313,7 +312,7 @@ Partial Class Form1
         'Button9
         '
         Me.Button9.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button9.Location = New System.Drawing.Point(156, 421)
+        Me.Button9.Location = New System.Drawing.Point(442, 538)
         Me.Button9.Name = "Button9"
         Me.Button9.Size = New System.Drawing.Size(75, 23)
         Me.Button9.TabIndex = 23
@@ -323,7 +322,7 @@ Partial Class Form1
         'Button10
         '
         Me.Button10.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button10.Location = New System.Drawing.Point(82, 449)
+        Me.Button10.Location = New System.Drawing.Point(368, 566)
         Me.Button10.Name = "Button10"
         Me.Button10.Size = New System.Drawing.Size(75, 23)
         Me.Button10.TabIndex = 24
@@ -333,18 +332,110 @@ Partial Class Form1
         'Button11
         '
         Me.Button11.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button11.Location = New System.Drawing.Point(28, 421)
+        Me.Button11.Location = New System.Drawing.Point(314, 538)
         Me.Button11.Name = "Button11"
         Me.Button11.Size = New System.Drawing.Size(75, 23)
         Me.Button11.TabIndex = 25
         Me.Button11.Text = "SendTemp"
         Me.Button11.UseVisualStyleBackColor = True
         '
+        'ListBox1
+        '
+        Me.ListBox1.FormattingEnabled = True
+        Me.ListBox1.Location = New System.Drawing.Point(12, 359)
+        Me.ListBox1.Name = "ListBox1"
+        Me.ListBox1.Size = New System.Drawing.Size(215, 303)
+        Me.ListBox1.TabIndex = 27
+        '
+        'counterRecorder
+        '
+        Me.counterRecorder.Interval = 1000
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(9, 343)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(192, 13)
+        Me.Label1.TabIndex = 29
+        Me.Label1.Text = "Time in Seconds for Change in Position"
+        '
+        'Button12
+        '
+        Me.Button12.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Button12.Location = New System.Drawing.Point(368, 611)
+        Me.Button12.Name = "Button12"
+        Me.Button12.Size = New System.Drawing.Size(75, 23)
+        Me.Button12.TabIndex = 30
+        Me.Button12.Text = "SendTemp"
+        Me.Button12.UseVisualStyleBackColor = True
+        '
+        'Button7
+        '
+        Me.Button7.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Button7.Location = New System.Drawing.Point(265, 407)
+        Me.Button7.Name = "Button7"
+        Me.Button7.Size = New System.Drawing.Size(124, 23)
+        Me.Button7.TabIndex = 31
+        Me.Button7.Text = "Return Home"
+        Me.Button7.UseVisualStyleBackColor = True
+        '
+        'counterPlayer
+        '
+        Me.counterPlayer.Interval = 1000
+        '
+        'Button13
+        '
+        Me.Button13.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Button13.Location = New System.Drawing.Point(368, 640)
+        Me.Button13.Name = "Button13"
+        Me.Button13.Size = New System.Drawing.Size(75, 23)
+        Me.Button13.TabIndex = 32
+        Me.Button13.Text = "SendTemp"
+        Me.Button13.UseVisualStyleBackColor = True
+        '
+        'Button14
+        '
+        Me.Button14.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Button14.Location = New System.Drawing.Point(255, 488)
+        Me.Button14.Name = "Button14"
+        Me.Button14.Size = New System.Drawing.Size(75, 23)
+        Me.Button14.TabIndex = 33
+        Me.Button14.Text = "slip"
+        Me.Button14.UseVisualStyleBackColor = True
+        '
+        'ImageList1
+        '
+        Me.ImageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit
+        Me.ImageList1.ImageSize = New System.Drawing.Size(16, 16)
+        Me.ImageList1.TransparentColor = System.Drawing.Color.Transparent
+        '
+        'Timer3
+        '
+        Me.Timer3.Enabled = True
+        '
+        'Button15
+        '
+        Me.Button15.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Button15.Location = New System.Drawing.Point(233, 449)
+        Me.Button15.Name = "Button15"
+        Me.Button15.Size = New System.Drawing.Size(75, 23)
+        Me.Button15.TabIndex = 34
+        Me.Button15.Text = "Recog"
+        Me.Button15.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(974, 616)
+        Me.ClientSize = New System.Drawing.Size(1260, 733)
+        Me.Controls.Add(Me.Button15)
+        Me.Controls.Add(Me.Button14)
+        Me.Controls.Add(Me.Button13)
+        Me.Controls.Add(Me.Button7)
+        Me.Controls.Add(Me.Button12)
+        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.ListBox1)
         Me.Controls.Add(Me.Button11)
         Me.Controls.Add(Me.Button10)
         Me.Controls.Add(Me.Button9)
@@ -395,11 +486,21 @@ Partial Class Form1
     Friend WithEvents rightTimer As Timer
     Friend WithEvents downTimer As Timer
     Friend WithEvents Panel1 As Panel
-    Friend WithEvents PictureBox1 As PictureBox
-    Friend WithEvents PictureBox2 As PictureBox
-    Friend WithEvents Button7 As Button
     Friend WithEvents Button8 As Button
     Friend WithEvents Button9 As Button
     Friend WithEvents Button10 As Button
     Friend WithEvents Button11 As Button
+    Friend WithEvents ListBox1 As ListBox
+    Friend WithEvents counterRecorder As Timer
+    Friend WithEvents Label1 As Label
+    Friend WithEvents Button12 As Button
+    Friend WithEvents Button7 As Button
+    Friend WithEvents counterPlayer As Timer
+    Friend WithEvents Button13 As Button
+    Friend WithEvents Button14 As Button
+    Friend WithEvents ImageList1 As ImageList
+    Friend WithEvents Timer3 As Timer
+    Friend WithEvents Button15 As Button
+    Friend WithEvents PictureBox2 As PictureBox
+    Friend WithEvents PictureBox1 As PictureBox
 End Class
